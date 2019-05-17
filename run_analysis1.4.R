@@ -25,16 +25,16 @@ if (!file.exists("UCI HAR Dataset")) {
 features <- read.table("UCI HAR Dataset/features.txt", col.names = c("n","functions"))
 activities <- read.table("UCI HAR Dataset/activity_labels.txt", col.names = c("code", "activity"))
 subj_test <- read.table("UCI HAR Dataset/test/subject_test.txt", col.names = "subject")
-x_test <- read.table("UCI HAR Dataset/test/X_test.txt", col.names = features$functions)
-y_test <- read.table("UCI HAR Dataset/test/y_test.txt", col.names = "code")
+signal_x_test <- read.table("UCI HAR Dataset/test/signal_x_test.txt", col.names = features$functions)
+signal_y_test <- read.table("UCI HAR Dataset/test/signal_y_test.txt", col.names = "code")
 subj_train <- read.table("UCI HAR Dataset/train/subject_train.txt", col.names = "subject")
-x_train <- read.table("UCI HAR Dataset/train/X_train.txt", col.names = features$functions)
-y_train <- read.table("UCI HAR Dataset/train/y_train.txt", col.names = "code")
+signal_x_train <- read.table("UCI HAR Dataset/train/signal_x_train.txt", col.names = features$functions)
+signal_y_train <- read.table("UCI HAR Dataset/train/signal_y_train.txt", col.names = "code")
 
 #1.Merges the training and the test sets to create one data set.
 
-X <- rbind(x_train, x_test)
-Y <- rbind(y_train, y_test)
+X <- rbind(signal_x_train, signal_x_test)
+Y <- rbind(signal_y_train, signal_y_test)
 Subject <- rbind(subj_train, subj_test)
 Data_Merge <- cbind(Subject, Y, X)
 
